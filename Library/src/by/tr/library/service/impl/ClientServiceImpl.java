@@ -29,4 +29,41 @@ public class ClientServiceImpl implements ClientService{
 		return result;
 	}
 
+	@Override
+	public boolean register(String firstName, String lastName, String email, String login, String password)
+			throws ServiceException {
+		
+		if (login == null || login.isEmpty()){
+			throw new ServiceException("empty");
+			
+		}
+		if (firstName == null || firstName.isEmpty()){
+			throw new ServiceException("empty");
+			
+		}
+		if (lastName == null || lastName.isEmpty()){
+			throw new ServiceException("emptyj");
+			
+		}
+		if (email == null || email.isEmpty()){
+			throw new ServiceException("empty");
+			
+		}
+		
+		DAOFactory factoryReg= DAOFactory.getInstance();
+		CommonDao commonDaoReg= factoryReg.getCommonDao(); //new SQLCommonDAO 
+		
+		boolean isRegistered;
+		
+		try {
+			isRegistered= commonDaoReg.registration(firstName, lastName, email, login, password);
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new ServiceException("Registration not successful");
+		}
+		
+		return isRegistered;
+	}
+	
 }
