@@ -11,11 +11,9 @@ public class ClientServiceImpl implements ClientService{
 	@Override
 	public boolean logination(String login, String password) throws ServiceException  {
 		// parameters validation
-		
 		if (login == null || login.isEmpty()){
 			throw new ServiceException("jhvjvj");
 		}
-		
 		
 		
 		DAOFactory factory = DAOFactory.getInstance();
