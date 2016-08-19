@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -55,32 +57,29 @@ public class ShowBooks implements Command {
 		Connection conn=null;
 		ResultSet rs=null;
 		Statement stat= null;
-		String sql=" SELECT NAME, PRICE, AUTHOR FROM EXAMPLE.LIBRARY_USERS ";
+		String sql=" SELECT* FROM EXAMPLE.BOOKS ";
 		conn=getConnection();
 		try {
 			stat= conn.createStatement();
 			rs= stat.executeQuery(sql);
 			while(rs.next()){
-				System.out.println(rs.getString(2) + rs.getDouble(3) + rs.getString(4));
-				books.add(new Book(rs.getString("name"), rs.getDouble("price"), rs.getString("author")));
+				
+				books.add(new Book(rs.getString(2), rs.getDouble(3), rs.getString(4)));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger(Logination.class.getName()).log(Level.SEVERE	, null	, e);
 		}finally{
 			if(stat!=null){
 				try {
 					stat.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Logger.getLogger(Logination.class.getName()).log(Level.SEVERE	, null	, e);
 				}
 			}if(conn!=null){
 				try {
 					conn.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Logger.getLogger(Logination.class.getName()).log(Level.SEVERE	, null	, e);
 				}
 			}
 		}

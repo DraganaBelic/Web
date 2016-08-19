@@ -8,6 +8,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,6 +38,30 @@ public class Logination implements Command {
 		login= request.getParameter(LOGIN);
 		pass=request.getParameter(PASSWORD);
 		
+		if(login==null || login.isEmpty()){
+			response.setContentType("text/html");
+			PrintWriter pw;
+			try {
+				pw = response.getWriter();
+				pw.println("<h1>insert login</h1>");
+				pw.flush();
+			} catch (IOException e) {
+				throw new CommandExeption(e);
+			}
+			
+		}
+		if(pass==null || pass.isEmpty()){
+			response.setContentType("text/html");
+			PrintWriter pw;
+			try {
+				pw = response.getWriter();
+				pw.println("<h1>insert password</h1>");
+				pw.flush();
+			} catch (IOException e) {
+				throw new CommandExeption(e);
+			}
+		}
+		
 		String query = "SELECT* FROM EXAMPLE.LIBRARY_USERS WHERE login ='" + login + "'" + "&& password = '" + pass
 				+ "'";
 		
@@ -56,24 +82,21 @@ public class Logination implements Command {
 				
 			}
 		} catch (SQLException e1) {
-			
-			throw new CommandExeption(e1);
+			Logger.getLogger(Logination.class.getName()).log(Level.SEVERE	, null	, e1);
 		} catch (IOException e) {
-			throw new CommandExeption(e);
+			Logger.getLogger(Logination.class.getName()).log(Level.SEVERE	, null	, e);
 		}finally {
 			if(rs!=null){
 				try {
 					rs.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Logger.getLogger(Logination.class.getName()).log(Level.SEVERE	, null	, e);
 				}
 			}if(conn!=null){
 				try {
 					conn.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Logger.getLogger(Logination.class.getName()).log(Level.SEVERE	, null	, e);
 				}
 			}
 		}
@@ -104,11 +127,9 @@ public class Logination implements Command {
 			Class.forName("org.gjt.mm.mysql.Driver");
 			conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1/example", "root", "12345");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger(Logination.class.getName()).log(Level.SEVERE	, null	, e);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger(Logination.class.getName()).log(Level.SEVERE	, null	, e);
 		}
 		
 		
