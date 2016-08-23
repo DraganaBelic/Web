@@ -5,6 +5,7 @@ import by.tr.library.dao.impl.SQLCommonDao;
 import by.tr.library.dao.impl.SQLUserDao;
 
 public class DAOFactory {
+	
 	private static final DAOFactory factory = new DAOFactory();
 	
 	private final CommonDao commonDao = new SQLCommonDao();

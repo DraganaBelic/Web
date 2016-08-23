@@ -1,0 +1,40 @@
+1471854808466	Copy package
+1471854909631	Delete element
+1471855026630	Copy package
+1471855078500	Delete element
+1471855097601	Rename package 'by.tr.library.service.implement.copy'
+1471855359664	Rename package 'by.tr.library.bean'
+1471855377906	Rename package 'by.tr.library.controller'
+1471855396834	Rename package 'by.tr.library.dao'
+1471855409105	Rename package 'by.tr.library.service'
+1471855423453	Rename package 'by.tr.library.service.exception'
+1471855437441	Rename package 'by.tr.library.service.implement'
+1471855559504	Copy package
+1471855587250	Copy package
+1471855603522	Delete element
+1471855616616	Delete element
+1471855631240	Rename package 'by.tr.app.dao.exception.copy'
+1471855889645	Rename type 'UserDao'
+1471855941825	Rename type 'AdminDao'
+1471855962737	Rename type 'DAOFactory'
+1471856098004	Copy package
+1471856316876	Delete element
+1471856436594	Rename package 'by.tr.app.dao.implement.copy'
+1471858416607	Copy package
+1471858431147	Delete element
+1471858555475	Copy package
+1471858600733	Copy package
+1471858969956	Delete element
+1471858974391	Delete element
+1471859093847	Rename type 'CommandExeption'
+1471859183974	Delete element
+1471859515893	Copy package
+1471859531128	Copy package
+1471859534344	Delete element
+1471860126494	Copy compilation unit
+1471860130310	Delete element
+1471861155250	Rename type 'CSeviceImplement'
+1471877545401	Delete element
+1471950471374	Rename method 'logination'
+1471950550006	Rename method 'norm'
+1471950585241	Rename method 'register'
