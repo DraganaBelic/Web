@@ -10,11 +10,11 @@
 <body>
 <h1>Register : </h1>
 
-<form action="../Controller" method="get">
+<form action="/LibraryApplication/Controller" method="post">
 	<input type="hidden" name="command" value="registration" />
 	
 	First name :<br>
-		<input type="text" name="fname" value=""/><br/>
+		<input type="text" name="name" value=""/><br/>
 	Last name :<br/>
 		<input type="text" name= "lname" value="" /><br/>
 	User name:<br/>

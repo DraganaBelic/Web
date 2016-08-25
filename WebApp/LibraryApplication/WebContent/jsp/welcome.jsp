@@ -14,9 +14,9 @@
 	<form action="./Controller" method="get">
 	
 	<input type="hidden" name="command" value="show_books" />
-	<input type="submit" name="blaa" value="books"/>
+	<input type="submit" name="blaa" value="Books"/>
 	
 	</form>
-
+<h3><a href="index.jsp">Log out</a></h3>
 </body>
 </html>

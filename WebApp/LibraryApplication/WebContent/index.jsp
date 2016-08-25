@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Home page</title>
 </head>
 <body>
 <c:set var="message" value="${requestScope.error }"/>
@@ -13,9 +13,9 @@
 		<c:out value="${requestScope.error }"/>
 	</c:if>
 	
- 	<h1 style="color: red" >Welcome to library application</h1>
+ 	<h1 style="color: blue" >Welcome to library application</h1>
  	<h2><a href="jsp/logination.jsp">Login</a></h2>
- 	<h2><a href="jsp/register.jsp">Register</a></h2>
+ 	<h2><a href="jsp/registration.jsp">Register</a></h2>
 
 </body>
 </html>

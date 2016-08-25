@@ -28,44 +28,63 @@ public class Logination implements Command {
 		
 		login= request.getParameter(LOGIN);
 		password=request.getParameter(PASSWORD);
-
+		String errorPage= "jsp/log_error.jsp";
 	
-		
 		if(login==null || login.isEmpty()){
-			//error page
+			RequestDispatcher d = request.getRequestDispatcher(errorPage);
+			try {
+				d.forward(request, response);
+				return;
+			} catch (ServletException | IOException e) {
+				throw new CommandException("error");
+			}
+			
 			
 		}
 		if(password==null || password.isEmpty()){
-			//error page
+			RequestDispatcher d= request.getRequestDispatcher(errorPage);
+			try {
+				d.forward(request, response);
+				return;
+			} catch (ServletException | IOException e) {
+				throw new CommandException("error");
+			}
 		}
 		//service
 		
 		ServiceFactory serviceFactory= ServiceFactory.getInstance();
 		ClientService clientService= serviceFactory.getClientService();
 		
-		
+		boolean loged;
 		
 		try {
-			boolean loged = clientService.loginMethod(login, password);
-			
+			loged = clientService.loginMethod(login, password);
 		} catch (ServiceException e1) {
 			throw new CommandException("eror");
 			
 		}
-		
+		if(!loged){
+			RequestDispatcher d= request.getRequestDispatcher("jsp/match_error.jsp");
+			try {
+				d.forward(request, response);
+				return;
+			} catch (ServletException | IOException e) {
+				throw new CommandException("eror");
+			}
+		}
 		
 		User user= new User();
 	
 		HttpSession session= request.getSession(false);
 		session.setAttribute("user", user);
+		user.setLogin(login);
 		
 		RequestDispatcher disp= request.getRequestDispatcher("jsp/welcome.jsp");
 		
 			try {
 				disp.forward(request, response);
 			} catch (ServletException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new CommandException("Command error");
 			}
 		
 	}

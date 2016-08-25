@@ -17,7 +17,7 @@ public class SQLLogDao implements LogDao {
 	@Override
 	public boolean authorization(String login, String password) throws DAOException {
 
-		final String sql = "SELECT* FROM  LIBRARY_USERS WHERE login ='" + login + "'" + "&& password = '" + password
+		final String sql = "SELECT* FROM  EXAMPLE.LIBRARY_USERS WHERE login ='" + login + "'" + "&& password = '" + password
 				+ "'";
 		Connection conn = null;
 		Statement stat = null;
@@ -67,31 +67,35 @@ public class SQLLogDao implements LogDao {
 
 		Connection conn = null;
 
-		PreparedStatement preparedStat = null;
-		final String sql = "INSERT INTO library_users "
-				+ " ( `login`, `password`, `first_name`, `last_name`, `email`) VALUES " + "(?,?,?,?,?)";
+		PreparedStatement ps = null;
+		final String sql = "INSERT INTO `example`.`library_users` (`login`, `password`, `first_name`, `last_name`, `email`) VALUES (?,?,?,?,?)";
 
 		try {
+			
+			Class.forName("org.gjt.mm.mysql.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1/example", "root", "12345");
 
-			preparedStat = conn.prepareStatement(sql);
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, login);
+			ps.setString(2, password);
+			ps.setString(3, firstName);
+			ps.setString(4, lastName);
+			ps.setString(5, email);
+			
 
-			preparedStat.setString(2, login);
-			preparedStat.setString(3, password);
-			preparedStat.setString(4, firstName);
-			preparedStat.setString(5, lastName);
-			preparedStat.setString(6, email);
-
-			preparedStat.executeUpdate();
+			ps.executeUpdate();
 
 		} catch (SQLException e) {
+			throw new DAOException("DAOExceptin message", e);
+		} catch (ClassNotFoundException e) {
 			throw new DAOException("DAOExceptin message", e);
 		}
 
 		finally {
-			if (preparedStat != null) {
+			if (ps != null) {
 				try {
-					preparedStat.close();
+					ps.close();
 				} catch (SQLException e) {
 					Logger.getLogger(SQLLogDao.class.getName()).log(Level.SEVERE, null, e);
 
