@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import by.tr.app.bean.Book;
+import by.tr.app.command.impl.FindBook;
 import by.tr.app.dao.BookDao;
 import by.tr.app.dao.exception.DAOException;
 
@@ -168,4 +169,8 @@ public class SQLBookDao implements BookDao {
 
 		return books;
 	}
+
+
+
+
 }

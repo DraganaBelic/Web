@@ -3,6 +3,7 @@ package by.tr.app.service;
 import java.util.List;
 
 import by.tr.app.bean.Book;
+import by.tr.app.dao.exception.DAOException;
 import by.tr.app.service.exception.ServiceException;
 
 public interface LibraryService {
@@ -12,5 +13,6 @@ public interface LibraryService {
 	boolean addBook(String title, String author, double price, String genre) throws ServiceException;
 	
 	List<Book> searchForBooks(String someString) throws ServiceException;
-
+    
+	
 }

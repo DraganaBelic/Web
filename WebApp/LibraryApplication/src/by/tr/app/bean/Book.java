@@ -14,6 +14,9 @@ public class Book {
 		this.genre= genre;
 		
 	}
+	public Book() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getTitle() {
 		return title;
 	}

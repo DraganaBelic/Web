@@ -12,4 +12,5 @@ public interface BookDao {
 	List<Book> findBook(String someString)throws DAOException;
 	
 	
+	
 }
